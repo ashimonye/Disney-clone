@@ -1,17 +1,28 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { auth, provider } from "../firebase";
+
 
 
 
 const Header = (props) => {
+
+    const handleAuth = () => {
+      auth
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
     
     return (
         <Nav>
           <Logo>
             <img src="/images/logo.svg" alt="Disney+" />
           </Logo>
+          <>
           <NavMenu>
           <a href="/">
               <img src="/images/home-icon.svg" alt="HOME" />
@@ -38,7 +49,8 @@ const Header = (props) => {
               <span>SERIES</span>
             </a>
           </NavMenu>
-          <Login>
+          </>
+          <Login onClick={handleAuth}>
             Login
           </Login>
         </Nav>
@@ -88,6 +100,7 @@ const NavMenu = styled.div`
   margin-left: 25px;
   a {
     display: flex;
+    cursor: pointer;
     align-items: center;
     padding: 0 12px;
     img {
@@ -139,6 +152,7 @@ const Login = styled.a`
   padding: 8px 16px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  cursor: pointer;
   border: 1px solid #f9f9f9;
   border-radius: 4px;
   transition: all 0.2s ease 0s;
