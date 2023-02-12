@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
+import NewDisney from "./NewDisney";
 import Recommends from "./Recommends";
 import Viewers from "./Viewers";
 
@@ -11,6 +12,7 @@ const Home = () => {
             <ImgSlider />
             <Viewers />
             <Recommends />
+            <NewDisney />
         </Container>
     );
 };
